@@ -1,0 +1,38 @@
+# CONFIGURACION CONTEXTO
+server:
+  port: 9104
+
+spring:
+  # MONGODB
+  data:
+    mongodb:
+      uri: mongodb+srv://userbd:ubdatos@producto.0wo56.mongodb.net/BCAccounts?retryWrites=true&w=majority
+#      uri: mongodb+srv://mongoAtlas:m0ngo4tlas@cluster0.siwst.mongodb.net/walletAccounts?retryWrites=true&w=majority
+
+
+  # KAFKA
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: walletholder
+      topic.name: "WALLETBC-SEND-MONEY"
+    properties:
+      spring.json.trusted.packages: "*"
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
+
+# CONFIG SERVER
+spring.cloud.discovery.enabled: false
+spring.cloud.config.discovery.enabled: false
+spring.cloud.config.enabled: false
+
+# LOGGING
+log:
+  path: /opt/logs/ms-wallet-bootcoin
+logging:
+  level:
+    org.mongodb.driver: ERROR

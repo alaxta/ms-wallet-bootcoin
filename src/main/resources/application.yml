@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: ms-wallet-yanki
+  profiles:
+    active: local
